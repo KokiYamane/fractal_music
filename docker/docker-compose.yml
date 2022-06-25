@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  fractal_music:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/root/workspace/
+      # - ../../datasets:/root/datasets/
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.ssh:/root/.ssh
+    # runtime: nvidia
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      DISPLAY: ${DISPLAY}
+      QT_X11_NO_MITSHM: 1
+    stdin_open: true
+    privileged: true

@@ -1,0 +1,9 @@
+flake8
+autopep8
+numpy
+scipy
+matplotlib
+seaborn
+pandas
+tqdm
+music21
