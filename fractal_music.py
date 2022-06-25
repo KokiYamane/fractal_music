@@ -9,7 +9,7 @@ sns.set()
 def main():
     rate = 44100
     BPM = 240
-    seconds = 60 / BPM
+    seconds = 30 / BPM
 
     def musical_scale(n):
         return 27.500 * 2 ** (n / 12)
@@ -27,10 +27,19 @@ def main():
         wave = np.zeros(len(phase))
         for A, f in zip(amp, freq):
             wave += A * np.sin(f * phase)
+        # wave = np.sin(phase)
         return wave
 
-    melody = [np.random.randint(88) for _ in range(100)]
-    freq = musical_scale(np.array(melody))
+    # melody = np.array([np.random.randint(88) for _ in range(100)])
+    # melody = np.array([np.random.randint(24) for _ in range(100)]) + 12 * 2
+    # melody = np.arange(88)
+    melody = []
+    x = 0.09
+    for _ in range(200):
+        x = 4 * x * (1 - x)
+        melody.append(x)
+    melody = np.array(melody) * 24 + 12 * 2
+    freq = musical_scale(melody)
 
     phases_list = []
     bias = 0
